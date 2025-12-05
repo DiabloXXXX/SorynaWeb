@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Updated color tokens for Hapiyo Coffee - premium coffee aesthetic */
+    --background: 40 15% 97%;
+    --foreground: 15 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 15 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 15 30% 15%;
+
+    /* Primary: Rich coffee brown */
+    --primary: 25 50% 35%;
+    --primary-foreground: 40 15% 97%;
+
+    /* Secondary: Warm accent */
+    --secondary: 35 80% 50%;
+    --secondary-foreground: 15 30% 15%;
+
+    /* Muted: Neutral beige */
+    --muted: 40 25% 85%;
+    --muted-foreground: 15 30% 50%;
+
+    /* Accent: Highlight */
+    --accent: 35 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 25% 90%;
+    --input: 40 20% 95%;
+    --ring: 25 50% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
