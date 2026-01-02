@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
             href="https://wa.me/6281234567890?text=Halo%20soryna"
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 group"
+            className="fixed bottom-6 right-6 z-[9998] group"
         >
             <div className="relative">
                 {/* Subtle Shadow */}

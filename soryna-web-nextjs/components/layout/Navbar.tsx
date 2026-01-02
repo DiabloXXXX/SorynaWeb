@@ -40,7 +40,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled
+        <nav className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${isScrolled
             ? isDark ? 'bg-gray-950/90 backdrop-blur-lg border-b border-white/5 py-3' : 'bg-white/90 backdrop-blur-lg border-b border-gray-200 py-3 shadow-sm'
             : 'bg-gradient-to-b from-black/50 to-transparent py-5'
             }`}>
