@@ -17,22 +17,27 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+    // Start with a default theme that won't cause hydration issues
     const [theme, setTheme] = useState<Theme>('dark');
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // Only run on client-side after mount
         setMounted(true);
+
+        // Check for saved theme in localStorage
         const savedTheme = localStorage.getItem('soryna-theme') as Theme;
-        if (savedTheme) {
+        if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
             setTheme(savedTheme);
             document.documentElement.classList.remove('light', 'dark');
             document.documentElement.classList.add(savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setTheme('dark');
-            document.documentElement.classList.add('dark');
         } else {
-            setTheme('light');
-            document.documentElement.classList.add('light');
+            // Check system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const systemTheme = prefersDark ? 'dark' : 'light';
+            setTheme(systemTheme);
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(systemTheme);
         }
     }, []);
 
@@ -43,9 +48,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         document.documentElement.classList.remove('light', 'dark');
         document.documentElement.classList.add(newTheme);
     };
-
-    // Prevent hydration mismatch by rendering simpler structure until mounted
-    // but do NOT hide children which hurts LCP/SEO
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme, isDark: theme === 'dark' }}>
